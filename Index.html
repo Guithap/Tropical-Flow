@@ -3,13 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Tropical Flow — Painel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <main class="container">
     <h1>🌴 Tropical Flow — Painel</h1>
     <p>Entre com sua conta do Discord para gerenciar o bot.</p>
-    <button id="loginBtn">Entrar com Discord</button>
+
+    <!-- Botão de login com logo do Discord -->
+    <button id="loginBtn">
+      <img src="https://cdn.worldvectorlogo.com/logos/discord-6.svg" alt="Discord Logo">
+      Entrar com Discord
+    </button>
 
     <section id="userSection" class="hidden">
       <h2>Seu perfil</h2>
@@ -23,7 +29,7 @@
   </main>
 
   <script>
-    window.BACKEND_URL = "https://e3336bb9-681e-4166-bc0d-14b8b7325abe-00-w7tmqwroe01g.kirk.replit.dev/";
+    window.BACKEND_URL = "https://e3336bb9-681e-4166-bc0d-14b8b7325abe-00-w7tmqwroe01g.kirk.replit.dev";
   </script>
   <script src="./app.js"></script>
 </body>
