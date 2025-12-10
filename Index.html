@@ -1,1 +1,30 @@
-k
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Tropical Flow — Painel</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>🌴 Tropical Flow — Painel</h1>
+    <p>Entre com sua conta do Discord para gerenciar o bot.</p>
+    <button id="loginBtn">Entrar com Discord</button>
+
+    <section id="userSection" class="hidden">
+      <h2>Seu perfil</h2>
+      <div id="userInfo"></div>
+    </section>
+
+    <section id="guildsSection" class="hidden">
+      <h2>Seus servidores</h2>
+      <ul id="guildsList"></ul>
+    </section>
+  </main>
+
+  <script>
+    window.BACKEND_URL = "https://SEU-PROJETO-SEU-USUARIO.repl.co";
+  </script>
+  <script src="./app.js"></script>
+</body>
+</html>
