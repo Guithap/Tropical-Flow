@@ -7,26 +7,43 @@
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <main class="container">
-    <h1>🌴 Tropical Flow — Painel</h1>
-    <p>Entre com sua conta do Discord para gerenciar o bot.</p>
+  <!-- Cabeçalho com menu (só aparece após login) -->
+  <header id="appHeader" class="hidden">
+    <button id="menuToggle">☰</button>
+    <h1>Tropical Flow — Configuração</h1>
+  </header>
 
-    <!-- Botão de login com logo do Discord -->
-    <button id="loginBtn">
-      <img src="https://cdn.jsdelivr.net/gh/edent/SuperTinyIcons/images/svg/discord.svg" alt="Discord Logo">
-      Entrar com Discord
-    </button>
-
-    <section id="userSection" class="hidden">
-      <h2>Seu perfil</h2>
-      <div id="userInfo"></div>
-    </section>
-
-    <section id="guildsSection" class="hidden">
+  <div class="layout">
+    <!-- Sidebar de servidores (só aparece após login) -->
+    <aside id="sidebar" class="hidden">
       <h2>Seus servidores</h2>
-      <ul id="guildsList"></ul>
-    </section>
-  </main>
+      <ul id="serverList"></ul>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="mainContent">
+      <!-- Seção de login (visível antes do login) -->
+      <section id="loginSection">
+        <h2>🌴 Painel do Bot</h2>
+        <p>Entre com sua conta do Discord para gerenciar o bot.</p>
+        <button id="loginBtn">
+          <img src="https://cdn.jsdelivr.net/gh/edent/SuperTinyIcons/images/svg/discord.svg" alt="Discord Logo">
+          Entrar com Discord
+        </button>
+      </section>
+
+      <!-- Seções que aparecem após login -->
+      <section id="userSection" class="hidden">
+        <h2>Seu perfil</h2>
+        <div id="userInfo"></div>
+      </section>
+
+      <section id="guildsSection" class="hidden">
+        <h2>Seus servidores</h2>
+        <ul id="guildsList"></ul>
+      </section>
+    </main>
+  </div>
 
   <script>
     // URL do backend (Replit)
