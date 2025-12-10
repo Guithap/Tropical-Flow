@@ -45,6 +45,10 @@ async function init() {
   if (!SESSION) {
     // Usuário não logado → mostra só login
     loginSection.classList.remove("hidden");
+    appHeader.classList.add("hidden");
+    sidebar.classList.add("hidden");
+    userSection.classList.add("hidden");
+    guildsSection.classList.add("hidden");
     return;
   }
 
@@ -65,34 +69,32 @@ async function init() {
 
     // Servidores do usuário
     const guilds = await fetchJSON(`${window.BACKEND_URL}/me/guilds`);
-    guildsList.innerHTML = "";
     serverList.innerHTML = "";
+    guildsList.innerHTML = "";
 
-    guilds
-      .filter(g => g.owner) // só servidores onde ele é dono
-      .forEach(g => {
-        const iconURL = g.icon
-          ? `https://cdn.discordapp.com/icons/${g.id}/${g.icon}.png?size=64`
-          : "https://cdn.jsdelivr.net/gh/edent/SuperTinyIcons/images/svg/discord.svg";
+    guilds.filter(g => g.owner).forEach(g => {
+      const iconURL = g.icon
+        ? `https://cdn.discordapp.com/icons/${g.id}/${g.icon}.png?size=64`
+        : "https://cdn.jsdelivr.net/gh/edent/SuperTinyIcons/images/svg/discord.svg";
 
-        const botPresent = g.bot_in_server ? "✅ Bot presente" : "❌ Bot ausente";
+      const botPresent = g.bot_in_server ? "✅ Bot presente" : "❌ Bot ausente";
 
-        // Item na sidebar
-        const liSidebar = document.createElement("li");
-        liSidebar.innerHTML = `
-          <img src="${iconURL}" alt="Ícone">
-          <div>
-            <strong>${g.name}</strong><br>
-            <span class="status">${botPresent}</span>
-          </div>
-        `;
-        serverList.appendChild(liSidebar);
+      // Item na sidebar
+      const liSidebar = document.createElement("li");
+      liSidebar.innerHTML = `
+        <img src="${iconURL}" alt="Ícone">
+        <div>
+          <strong>${g.name}</strong><br>
+          <span class="status">${botPresent}</span>
+        </div>
+      `;
+      serverList.appendChild(liSidebar);
 
-        // Item na seção principal
-        const liGuild = document.createElement("li");
-        liGuild.innerHTML = `<strong>${g.name}</strong> — Owner: ${g.owner}`;
-        guildsList.appendChild(liGuild);
-      });
+      // Item na seção principal
+      const liGuild = document.createElement("li");
+      liGuild.innerHTML = `<strong>${g.name}</strong> — Owner: ${g.owner}`;
+      guildsList.appendChild(liGuild);
+    });
   } catch (err) {
     console.error(err);
     alert("Erro ao carregar dados. Faça login novamente.");
