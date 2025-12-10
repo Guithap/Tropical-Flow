@@ -1,3 +1,4 @@
+/* ===== Estilo geral ===== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -5,22 +6,89 @@ body {
   color: #fff;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+}
+
+/* ===== Cabeçalho ===== */
+header {
+  display: flex;
   align-items: center;
+  background: #2c2f3a;
+  padding: 10px 16px;
 }
 
-.container {
-  text-align: center;
-  max-width: 400px;
+header h1 {
+  flex: 1;
+  font-size: 18px;
+  margin: 0;
 }
 
-h1 {
-  margin-bottom: 10px;
+#menuToggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: none; /* só aparece em telas pequenas */
 }
 
-p {
-  margin-bottom: 20px;
+/* ===== Layout principal ===== */
+.layout {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 50px);
+}
+
+/* ===== Sidebar ===== */
+aside#sidebar {
+  width: 250px;
+  background: #2b2d36;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+aside h2 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+#serverList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#serverList li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 8px;
+  background: #3a3d4a;
+  border-radius: 8px;
+}
+
+#serverList img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+#serverList .status {
+  font-size: 12px;
   color: #ccc;
+}
+
+/* ===== Conteúdo principal ===== */
+.mainContent {
+  flex: 1;
+  padding: 24px;
+  text-align: center;
+}
+
+/* ===== Seção de login ===== */
+#loginSection {
+  margin-top: 100px;
 }
 
 #loginBtn {
@@ -49,6 +117,34 @@ p {
   box-shadow: 0 4px 12px rgba(88, 101, 242, 0.6);
 }
 
+/* ===== Responsividade ===== */
+@media (max-width: 768px) {
+  #menuToggle {
+    display: block;
+  }
+
+  aside#sidebar {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 250px;
+    height: calc(100vh - 50px);
+    background: #2b2d36;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 10;
+  }
+
+  aside#sidebar.open {
+    transform: translateX(0);
+  }
+
+  .layout {
+    flex-direction: column;
+  }
+}
+
+/* ===== Utilitários ===== */
 .hidden {
   display: none;
 }
