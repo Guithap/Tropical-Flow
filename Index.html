@@ -7,14 +7,14 @@
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <!-- Cabeçalho com menu (só aparece após login) -->
+  <!-- Cabeçalho -->
   <header id="appHeader" class="hidden">
     <button id="menuToggle">☰</button>
     <h1>Tropical Flow — Configuração</h1>
   </header>
 
   <div class="layout">
-    <!-- Sidebar de servidores (só aparece após login) -->
+    <!-- Sidebar -->
     <aside id="sidebar" class="hidden">
       <h2>Seus servidores</h2>
       <ul id="serverList"></ul>
@@ -22,7 +22,7 @@
 
     <!-- Conteúdo principal -->
     <main class="mainContent">
-      <!-- Seção de login (visível antes do login) -->
+      <!-- Login -->
       <section id="loginSection">
         <h2>🌴 Painel do Bot</h2>
         <p>Entre com sua conta do Discord para gerenciar o bot.</p>
@@ -32,12 +32,13 @@
         </button>
       </section>
 
-      <!-- Seções que aparecem após login -->
+      <!-- Perfil -->
       <section id="userSection" class="hidden">
         <h2>Seu perfil</h2>
         <div id="userInfo"></div>
       </section>
 
+      <!-- Guilds -->
       <section id="guildsSection" class="hidden">
         <h2>Seus servidores</h2>
         <ul id="guildsList"></ul>
@@ -46,8 +47,7 @@
   </div>
 
   <script>
-    // URL do backend (Replit)
-    window.BACKEND_URL = "https://e3336bb9-681e-4166-bc0d-14b8b7325abe-00-w7tmqwroe01g.kirk.replit.dev";
+    window.BACKEND_URL = "https://e3336bb9-681e-4166-bc0d-14b8b7325abe-00-w7tmqwroe01g.kirk.replit.dev/"; 
   </script>
   <script src="./app.js"></script>
 </body>
