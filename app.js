@@ -9,7 +9,6 @@ const sidebar = document.getElementById("sidebar");
 const serverList = document.getElementById("serverList");
 const menuToggle = document.getElementById("menuToggle");
 
-// Captura ?session=... tanto na raiz quanto em /callback
 function getQueryParam(name) {
   const url = new URL(window.location.href);
   return url.searchParams.get(name);
@@ -18,8 +17,7 @@ function getQueryParam(name) {
 const sessionTokenFromURL = getQueryParam("session");
 if (sessionTokenFromURL) {
   localStorage.setItem("tf_session", sessionTokenFromURL);
-  // Redireciona para raiz para evitar 404
-  window.location.href = "/";
+  window.history.replaceState({}, document.title, window.location.pathname);
 }
 
 const SESSION = localStorage.getItem("tf_session");
