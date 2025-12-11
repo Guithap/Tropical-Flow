@@ -9,29 +9,27 @@ const sidebar = document.getElementById("sidebar");
 const serverList = document.getElementById("serverList");
 const menuToggle = document.getElementById("menuToggle");
 
-// Helper: pegar query params
+// Captura ?session=... tanto na raiz quanto em /callback
 function getQueryParam(name) {
   const url = new URL(window.location.href);
   return url.searchParams.get(name);
 }
 
-// Se veio um token de sessão pelo callback, guardar em localStorage
 const sessionTokenFromURL = getQueryParam("session");
 if (sessionTokenFromURL) {
   localStorage.setItem("tf_session", sessionTokenFromURL);
-  window.history.replaceState({}, document.title, window.location.pathname);
+  // Redireciona para raiz para evitar 404
+  window.location.href = "/";
 }
 
 const SESSION = localStorage.getItem("tf_session");
 
-// Clique no botão → redireciona para backend
 if (loginBtn) {
   loginBtn.addEventListener("click", () => {
     window.location.href = `${window.BACKEND_URL}/login`;
   });
 }
 
-// Função para requisições autenticadas
 async function fetchJSON(url) {
   const res = await fetch(url, {
     headers: SESSION ? { "Authorization": `Bearer ${SESSION}` } : {}
@@ -40,7 +38,6 @@ async function fetchJSON(url) {
   return res.json();
 }
 
-// Mostrar/ocultar seções conforme login
 async function init() {
   if (!SESSION) {
     loginSection.classList.remove("hidden");
@@ -58,14 +55,12 @@ async function init() {
     userSection.classList.remove("hidden");
     guildsSection.classList.remove("hidden");
 
-    // Dados do usuário
     const me = await fetchJSON(`${window.BACKEND_URL}/me`);
     userInfo.innerHTML = `
       <p><strong>Nome:</strong> ${me.username}#${me.discriminator}</p>
       <p><strong>ID:</strong> ${me.id}</p>
     `;
 
-    // Servidores
     const guilds = await fetchJSON(`${window.BACKEND_URL}/me/guilds`);
     serverList.innerHTML = "";
     guildsList.innerHTML = "";
@@ -99,7 +94,6 @@ async function init() {
   }
 }
 
-// Toggle sidebar no mobile
 if (menuToggle) {
   menuToggle.addEventListener("click", () => {
     sidebar.classList.toggle("open");
