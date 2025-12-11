@@ -43,7 +43,6 @@ async function fetchJSON(url) {
 // Mostrar/ocultar seções conforme login
 async function init() {
   if (!SESSION) {
-    // Usuário não logado → mostra só login
     loginSection.classList.remove("hidden");
     appHeader.classList.add("hidden");
     sidebar.classList.add("hidden");
@@ -53,7 +52,6 @@ async function init() {
   }
 
   try {
-    // Usuário logado → mostra perfil, sidebar e header
     loginSection.classList.add("hidden");
     appHeader.classList.remove("hidden");
     sidebar.classList.remove("hidden");
@@ -67,7 +65,7 @@ async function init() {
       <p><strong>ID:</strong> ${me.id}</p>
     `;
 
-    // Servidores do usuário
+    // Servidores
     const guilds = await fetchJSON(`${window.BACKEND_URL}/me/guilds`);
     serverList.innerHTML = "";
     guildsList.innerHTML = "";
@@ -79,7 +77,6 @@ async function init() {
 
       const botPresent = g.bot_in_server ? "✅ Bot presente" : "❌ Bot ausente";
 
-      // Item na sidebar
       const liSidebar = document.createElement("li");
       liSidebar.innerHTML = `
         <img src="${iconURL}" alt="Ícone">
@@ -90,7 +87,6 @@ async function init() {
       `;
       serverList.appendChild(liSidebar);
 
-      // Item na seção principal
       const liGuild = document.createElement("li");
       liGuild.innerHTML = `<strong>${g.name}</strong> — Owner: ${g.owner}`;
       guildsList.appendChild(liGuild);
